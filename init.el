@@ -321,6 +321,15 @@ before packages are loaded. If you are unsure, you should try in setting them in
    `(isearch ((t (:foreground "#fefefc" :background "#a3a333")))))
   )
 
+;; https://stackoverflow.com/a/25792276
+(defun lunaryorn-new-buffer-frame ()
+  "Create a new frame with a new empty buffer."
+  (interactive)
+  (let ((buffer (generate-new-buffer "untitled")))
+    (set-buffer-major-mode buffer)
+    (display-buffer buffer '(display-buffer-pop-up-frame . nil)))
+  (toggle-frame-fullscreen))
+
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
@@ -337,6 +346,8 @@ you should place your code here."
 
   ;; already set to not dotspacemacs-fullscreen-use-non-native
   ;; (setq ns-use-native-fullscreen nil)
+
+  ;; (global-set-key (kbd "xxx") (lambda () (interactive) (some-command) (some-other-command)))
 
   ;;; NOTE In keybindings S- means SHIFT- and s- means CMD- (aka SUPER-)
 
@@ -373,6 +384,13 @@ you should place your code here."
   ;; TODO delete frame after deleting last window
   (global-set-key (kbd "s-w") 'delete-window)
   (global-set-key (kbd "s-W") 'delete-frame)
+  (global-set-key (kbd "s-n") 'lunaryorn-new-buffer-frame)
+  (define-key evil-normal-state-map "`w" 'delete-window)
+  (define-key evil-normal-state-map "`W" 'delete-frame)
+  (define-key evil-normal-state-map "`n" 'lunaryorn-new-buffer-frame)
+  (define-key evil-normal-state-map "`s" 'save-buffer)
+  (define-key evil-normal-state-map (kbd "` <right>") 'ns-next-frame)
+  (define-key evil-normal-state-map (kbd "` <left>") 'ns-prev-frame)
 
   ; TODO https://github.com/alezost/mwim.el/blob/master/mwim.el
   (define-key evil-normal-state-map "0" "^")
