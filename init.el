@@ -40,8 +40,11 @@ values."
      ; osx
      ;; ivy
      helm
+     ;; smex
      auto-completion
-     ;; better-defaults
+     better-defaults
+     evil-cleverparens
+     vim-empty-lines
      emacs-lisp
      dash
      ;; git
@@ -140,7 +143,7 @@ values."
                                :size 18
                                :weight normal
                                :width normal
-                               :powerline-scale 1.1)
+                               :powerline-scale 1.2)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
@@ -269,7 +272,7 @@ values."
    dotspacemacs-folding-method 'evil
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
-   dotspacemacs-smartparens-strict-mode nil
+   dotspacemacs-smartparens-strict-mode t
    ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
    ;; over any automatically added closing parenthesis, bracket, quote, etc…
    ;; This can be temporary disabled by pressing `C-q' before `)'. (default nil)
@@ -284,7 +287,7 @@ values."
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `ag', `pt', `ack' and `grep'.
    ;; (default '("ag" "pt" "ack" "grep"))
-   dotspacemacs-search-tools '("ag" "pt" "ack" "grep")
+   dotspacemacs-search-tools '("rg" "ag" "pt" "ack" "grep")
    ;; The default package repository used if no explicit repository has been
    ;; specified with an installed package.
    ;; Not used for now. (default nil)
@@ -337,6 +340,15 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  ;; XXX karabiner elements note
+  ;; <f19> is caps lock
+  ;; <f18> is tap right meta
+  (spacemacs/toggle-evil-cleverparens-on)
+  (add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
+  ;; (add-hook 'smartparens-enabled-hook #'evil-cleverparens-mode)
+  ;; TODO automatically make M a prefix aka map all M-blah to M blah via <f18> tap
+  ;; https://github.com/tekezo/Karabiner-Elements/issues/971
+
   ;; These setq's should be set by the custom-set-variables thing below, but it doesn't work.
   (setq mouse-wheel-scroll-amount (quote (1 ((shift) . 1) ((control)))))
   (setq scroll-margin 5)
@@ -443,14 +455,9 @@ you should place your code here."
   ;; " remove empty or otherwise dead buffers when moving away from them
   ;; tab insert spaces
 
-  ;; from basecamp
-  ;; smartparens, dumb-jump, Cider, projectile and Magit
-  ;; evil-cleverparens
-  ;; (add-hook 'smartparens-enabled-hook #'evil-cleverparens-mode)
-  ;; (add-hook 'focus-out-hook (lambda () (save-some-buffers t))))
-
   ;; XXX
   ;; https://github.com/noctuid/lispyville
+  ;; https://www.reddit.com/r/emacs/comments/3sfmkz/could_this_be_a_pareditsmartparens_killer/cwxocld/
 )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
