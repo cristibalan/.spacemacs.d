@@ -363,7 +363,7 @@ you should place your code here."
   (setq x-select-enable-clipboard nil)
   (define-key evil-visual-state-map (kbd "s-c") (kbd "\"+y"))
   (define-key evil-visual-state-map (kbd "s-x") (kbd "\"+d"))
-  (define-key evil-normal-state-map  (kbd "s-v") (kbd "\"+p"))
+  (define-key evil-normal-state-map  (kbd "s-v") (kbd "\"+P"))
   (define-key evil-visual-state-map  (kbd "s-v") (kbd "\"+p"))
   (define-key evil-insert-state-map  (kbd "s-v") (kbd "+"))
   (define-key evil-ex-completion-map (kbd "s-v") (kbd "+"))
