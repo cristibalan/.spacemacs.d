@@ -461,7 +461,8 @@ you should place your code here."
   ;; XXX
   ;; https://github.com/noctuid/lispyville
   ;; https://www.reddit.com/r/emacs/comments/3sfmkz/could_this_be_a_pareditsmartparens_killer/cwxocld/
-)
 
-(setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
-(load custom-file)
+
+  (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
+  (load custom-file)
+)
