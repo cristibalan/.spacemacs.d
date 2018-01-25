@@ -406,8 +406,10 @@ you should place your code here."
   ;; <f19> is caps lock
   ;; <f18> is tap right meta
   (spacemacs/toggle-evil-cleverparens-on)
+  (add-hook 'smartparens-enabled-hook #'evil-cleverparens-mode)
   (add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
-  ;; (add-hook 'smartparens-enabled-hook #'evil-cleverparens-mode)
+  (add-hook 'clojure-mode-hook #'aggressive-indent-mode)
+
   ;; TODO automatically make M a prefix aka map all M-blah to M blah via <f18> tap
   ;; https://github.com/tekezo/Karabiner-Elements/issues/971
 
