@@ -454,12 +454,14 @@ you should place your code here."
 
   (global-set-key (kbd "<s-f1>") 'dash-at-point)
   ;; " f19 is caps lock via karabiner-elements
-  (define-key evil-normal-state-map (kbd "<f19>") 'other-window)
-  (define-key evil-normal-state-map (kbd "<s-]>") 'other-window)
-  (define-key evil-normal-state-map (kbd "<s-[>") 'other-window)
+  (global-set-key (kbd "<f19>") 'other-window)
+  (global-set-key (kbd "s-]") 'other-window)
+  (global-set-key (kbd "s-[") 'other-window)
+  (global-set-key (kbd "<M-tab>") 'other-window)
 
-  (define-key evil-normal-state-map (kbd "<RET>") 'evil-switch-to-windows-last-buffer)
-  (define-key evil-normal-state-map (kbd "<DEL>") 'evil-switch-to-windows-last-buffer)
+  (define-key evil-normal-state-map (kbd "<RET>") 'spacemacs/alternate-buffer)
+  (global-set-key (kbd "<M-S-tab>") 'spacemacs/alternate-buffer)
+  ;; (define-key evil-normal-state-map (kbd "<DEL>") 'evil-switch-to-windows-last-buffer)
   (global-set-key (kbd "<s-return>") 'toggle-frame-fullscreen)
 
   ;; TODO delete frame after deleting last window
