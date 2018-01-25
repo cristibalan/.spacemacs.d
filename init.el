@@ -425,6 +425,9 @@ you should place your code here."
 
   ;;; NOTE In keybindings S- means SHIFT- and s- means CMD- (aka SUPER-)
 
+  (define-key evil-normal-state-map  (kbd "M-9") 'evil-cp-wrap-next-round)
+  (define-key evil-normal-state-map  (kbd "M-0") 'evil-cp-wrap-previous-round)
+
   ;; XXX
   ;; (define-key evil-insert-state-map  (kbd "<tab>") (kbd "  "))
 
