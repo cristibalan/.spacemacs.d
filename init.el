@@ -483,15 +483,16 @@ you should place your code here."
   (global-set-key (kbd "s-d") 'split-window-right-and-focus)
   (global-set-key (kbd "s-D") 'split-window-right-and-focus)
 
-  ; XXX https://github.com/technomancy/find-file-in-project
   (global-set-key (kbd "s-r") 'helm-projectile-find-file)
   (global-set-key (kbd "s-R") 'helm-projectile-find-dir)
   (define-key evil-normal-state-map "`r" 'helm-projectile-find-file)
   (define-key evil-normal-state-map "`R" 'helm-projectile-find-dir)
 
-  (global-set-key (kbd "<f2>") 'evil-search-highlight-persist-remove-all)
+  ;; not working
+  (define-key evil-normal-state-map (kbd "<f2>") 'evil-search-highlight-persist-remove-all)
 
   (define-key evil-insert-state-map  (kbd "C-SPC") (kbd "C-n"))
+  (define-key evil-insert-state-map  (kbd "M-SPC") (kbd "C-n"))
 
   ;; TODO fix selection when in visual mode
   (global-set-key [C-down] 'move-text-down)
