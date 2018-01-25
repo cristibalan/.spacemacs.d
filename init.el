@@ -343,6 +343,34 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+
+  ;; fix cider-last-sexp in evil mode (found in a spacemacs issue)
+  ;;   https://github.com/syl20bnr/spacemacs/issues/646#issuecomment-106037404
+  ;; original cider implementation
+  ;;   https://github.com/clojure-emacs/cider/blob/17ee1cf760776678d23e80e4746b45aea60cc1e9/cider-interaction.el#L343
+  ;; fix based on how evil fixes elisp
+  ;;   https://github.com/emacs-evil/evil/blob/99192e6f3135f35941da9fceafa1401124fe3374/evil-integration.el#L316
+  ;; should be obsoleted when this issue is done
+  ;;   https://github.com/syl20bnr/spacemacs/issues/3103
+  (defadvice cider-last-sexp (around evil activate)
+    "In normal-state or motion-state, last sexp ends at point."
+    (if (or (evil-normal-state-p) (evil-motion-state-p))
+        (save-excursion
+          (unless (or (eobp) (eolp)) (forward-char))
+          ad-do-it)
+      ad-do-it))
+
+  ;; fix green highlighting when eval-ing last-sexp
+  ;; original cider-eval-sexp-fu (comes with the clojure layer)
+  ;;   https://github.com/clojure-emacs/cider-eval-sexp-fu/blob/5687e7b33e17f2be40b036dac82da4a5bc6705fb/cider-eval-sexp-fu.el#L38
+  (defadvice cider-esf--bounds-of-last-sexp (around evil activate)
+    "In normal-state or motion-state, last sexp ends at point."
+    (if (or (evil-normal-state-p) (evil-motion-state-p))
+        (cons (save-excursion
+               (unless (or (eobp) (eolp)) (forward-char))
+               ad-do-it))
+      ad-do-it))
+
   ;; XXX karabiner elements note
   ;; <f19> is caps lock
   ;; <f18> is tap right meta
