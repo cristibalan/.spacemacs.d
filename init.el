@@ -473,8 +473,7 @@ you should place your code here."
   (define-key evil-normal-state-map (kbd "` <right>") 'ns-next-frame)
   (define-key evil-normal-state-map (kbd "` <left>") 'ns-prev-frame)
 
-  ; TODO https://github.com/alezost/mwim.el/blob/master/mwim.el
-  (define-key evil-normal-state-map "0" "^")
+  (define-key evil-normal-state-map "0" 'mwim-beginning-of-code-or-line-or-comment)
   (define-key evil-normal-state-map "--" 'spacemacs/comment-or-uncomment-lines)
   (define-key evil-visual-state-map "--" 'spacemacs/comment-or-uncomment-lines)
 
