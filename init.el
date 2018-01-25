@@ -411,9 +411,13 @@ you should place your code here."
   ;; TODO automatically make M a prefix aka map all M-blah to M blah via <f18> tap
   ;; https://github.com/tekezo/Karabiner-Elements/issues/971
 
-  ;; These setq's should be set by the custom-set-variables thing below, but it doesn't work.
+  ;; These setq's should be set by the custom-set-variables thing, but it doesn't work properly in spacemacs.
   (setq mouse-wheel-scroll-amount (quote (1 ((shift) . 1) ((control)))))
+  (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+  (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+  (setq scroll-step 1) ;; keyboard scroll one line at a time
   (setq scroll-margin 5)
+
   (blink-cursor-mode t)
   (setq blink-cursor-interval 0.3)
   (setq blink-cursor-blinks 1000000)
