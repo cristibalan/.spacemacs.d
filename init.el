@@ -371,6 +371,16 @@ you should place your code here."
                ad-do-it))
       ad-do-it))
 
+  ;; evil operator that calls cider-eval-region
+  (evil-define-operator cider-cp-eval (beg end)
+    "Convert text to upper case."
+    :move-point nil
+    (cider-eval-region beg end))
+  (define-key evil-normal-state-map "'" 'cider-cp-eval)
+
+  (define-key evil-normal-state-map (kbd "<f3>") (kbd "' a f"))
+  (define-key evil-normal-state-map (kbd "<f4>") (kbd ", a p"))
+
   ;; https://stackoverflow.com/questions/151945/how-do-i-control-how-emacs-makes-backup-files#151946:
   ;; Backups
 
