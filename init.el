@@ -39,6 +39,9 @@ values."
      ;; ----------------------------------------------------------------
      ; osx
      ;; ivy
+     (colors :variables
+             colors-colorize-identifiers 'variables
+             colors-enable-nyan-cat-progress-bar t)
      helm
      ;; smex
      auto-completion
