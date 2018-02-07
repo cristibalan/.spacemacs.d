@@ -371,15 +371,27 @@ you should place your code here."
                ad-do-it))
       ad-do-it))
 
+  (with-eval-after-load 'evil-cleverparens
+    (define-key evil-normal-state-map "x" 'evil-delete-char)
+    (define-key evil-normal-state-map "Y" 'evil-yank-line))
+
+  (setq cider-auto-jump-to-error nil)
+  (setq cider-auto-select-error-buffer nil)
+
   ;; evil operator that calls cider-eval-region
   (evil-define-operator cider-cp-eval (beg end)
     "Convert text to upper case."
     :move-point nil
     (cider-eval-region beg end))
+
   (define-key evil-normal-state-map "'" 'cider-cp-eval)
+  ;; cider-eval-pprint-with-multiline-comment-handler
 
   (define-key evil-normal-state-map (kbd "<f3>") (kbd "' a f"))
-  (define-key evil-normal-state-map (kbd "<f4>") (kbd ", a p"))
+  (define-key evil-normal-state-map (kbd "<f4>") (kbd "' a ("))
+  (define-key evil-normal-state-map (kbd "<f5>") (kbd "' a p"))
+
+  (define-key evil-normal-state-map (kbd "M-e") (kbd "d d 0 d s ("))
 
   ;; https://stackoverflow.com/questions/151945/how-do-i-control-how-emacs-makes-backup-files#151946:
   ;; Backups
